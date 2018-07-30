@@ -27,17 +27,17 @@ install_and_import('setuptools')
 
 from setuptools.command.build_ext import build_ext as _build_ext
 
-class build_ext(_build_ext):
-    def build_extensions(self):
-        import pkg_resources
-        # numpy_incl = pkg_resources.resource_filename('numpy', 'core/include')
-        numpy_incl = pkg_resources.resource_filename('numpy', '')
-
-        for ext in self.extensions:
-            if (hasattr(ext, 'include_dirs') and
-                    not numpy_incl in ext.include_dirs):
-                ext.include_dirs.append(numpy_incl)
-        _build_ext.build_extensions(self)
+# class build_ext(_build_ext):
+#     def build_extensions(self):
+#         import pkg_resources
+#         # numpy_incl = pkg_resources.resource_filename('numpy', 'core/include')
+#         numpy_incl = pkg_resources.resource_filename('numpy', '')
+#
+#         for ext in self.extensions:
+#             if (hasattr(ext, 'include_dirs') and
+#                     not numpy_incl in ext.include_dirs):
+#                 ext.include_dirs.append(numpy_incl)
+#         _build_ext.build_extensions(self)
 
 def generate_cython():
     cwd = os.path.abspath(os.path.dirname(__file__))
