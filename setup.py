@@ -27,6 +27,37 @@ install_and_import('setuptools')
 
 from setuptools.command.build_ext import build_ext as _build_ext
 
+from distutils import ccompiler, msvccompiler
+from distutils.sysconfig import get_python_inc
+
+
+## fix compiler and build options
+COMPILE_OPTIONS = {
+        'msvc': ['/0x', '/EHsc'],
+        'mingw32': ['-O3', '-ffast-math', '-march=native'],
+        'other': ['-O3', '-ffast-math', '-march=native']
+}
+
+LINK_OPTIONS = {
+        'msvc': [],
+        'mingw32': [],
+        'other':[]
+}
+
+class build_ext_options:
+    def build_options(self):
+        for e in self.extensions:
+            e.extra_compile_args += COMPILE_OPTIONS.get(
+                self.compiler.compiler_type, COMPILE_OPTIONS['other'])
+        for e in self.extensions:
+            e.extra_link_args += LINK_OPTIONS.get(
+                    self.compiler.compiler_type, LINK_OPTIONS['other'])
+
+class build_ext(_build_ext, build_ext_options):
+    def build_extensions(self):
+        build_ext_options.build_options(self)
+        _build_ext.build_extensions(self)
+
 # class build_ext(_build_ext):
 #     def build_extensions(self):
 #         import pkg_resources
