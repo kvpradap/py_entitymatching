@@ -108,6 +108,33 @@ from py_entitymatching.utils.generic_helper import get_install_path, load_datase
 from py_entitymatching.utils.pandas_helper import filter_rows, project_cols, \
     mutate_col, rename_col, preserve_metadata, drop_cols
 
+
+# DASK related commands
+
+# # Dask - downsampler
+from py_entitymatching.dask.dask_down_sample import dask_down_sample
+
+# # Dask - blockers
+from py_entitymatching.dask.dask_attr_equiv_blocker import DaskAttrEquivalenceBlocker
+from py_entitymatching.dask.dask_rule_based_blocker import DaskRuleBasedBlocker
+from py_entitymatching.dask.dask_black_box_blocker import DaskBlackBoxBlocker
+
+# # Dask - extracting feature vectors
+from py_entitymatching.dask.dask_extractfeatures import dask_extract_feature_vecs
+
+# # Dask - matchers
+from py_entitymatching.dask.dask_dtmatcher import DaskDTMatcher
+from py_entitymatching.dask.dask_logregmatcher import DaskLogRegMatcher
+from py_entitymatching.dask.dask_nbmatcher import DaskNBMatcher
+from py_entitymatching.dask.dask_rfmatcher import DaskRFMatcher
+from py_entitymatching.dask.dask_svmmatcher import DaskSVMMatcher
+try:
+    from py_entitymatching.dask.dask_xgboostmatcher import DaskXGBoostMatcher
+except ImportError:
+    pass
+
+
+
 # global vars
 _block_t = None
 _block_s = None
