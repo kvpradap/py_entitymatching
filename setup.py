@@ -120,7 +120,8 @@ if __name__ == "__main__":
             'pyparsing >= 2.1.4',
             'scikit-learn >= 0.18',
             'pandas-profiling >= 1.4.0',
-            'dask'
+            'dask',
+            'toolz'
         ],
         ext_modules=extensions,
         cmdclass=cmdclass,
