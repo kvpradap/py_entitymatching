@@ -30,7 +30,8 @@ from setuptools.command.build_ext import build_ext as _build_ext
 class build_ext(_build_ext):
     def build_extensions(self):
         import pkg_resources
-        numpy_incl = pkg_resources.resource_filename('numpy', 'core/include')
+        # numpy_incl = pkg_resources.resource_filename('numpy', 'core/include')
+        numpy_incl = pkg_resources.resource_filename('numpy', '')
 
         for ext in self.extensions:
             if (hasattr(ext, 'include_dirs') and
