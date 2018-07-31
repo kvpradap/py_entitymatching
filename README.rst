@@ -44,3 +44,4 @@ Platforms
 =========
 
 py_entitymatching has been tested on Linux, OS X and Windows.
+
